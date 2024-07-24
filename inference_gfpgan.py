@@ -42,6 +42,8 @@ def main():
         default='auto',
         help='Image extension. Options: auto | jpg | png, auto means using the same extension as inputs. Default: auto')
     parser.add_argument('-w', '--weight', type=float, default=0.5, help='Adjustable weights.')
+    parser.add_argument(
+        '-d', '--device', type=str, default='cuda:0', help='Device number')
     args = parser.parse_args()
 
     args = parser.parse_args()
@@ -120,7 +122,8 @@ def main():
         upscale=args.upscale,
         arch=arch,
         channel_multiplier=channel_multiplier,
-        bg_upsampler=bg_upsampler)
+        bg_upsampler=bg_upsampler,
+        device=args.device)
 
     # ------------------------ restore ------------------------
     for img_path in img_list:
